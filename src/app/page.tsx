@@ -1,14 +1,25 @@
+"use client";
 import Image from "next/image";
 import styles from "./page.module.scss";
+import Search from "@/components/Search/Search";
+import { useGitHubUserSearch } from "@/hooks/useGitHubSearch";
+import ListUsers from "@/components/ListUsers/ListUsers";
+import { Spin } from "antd";
 
 export default function Home() {
+  const { data, loading, error, setSearchText } = useGitHubUserSearch();
+  console.log("data: ", data);
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image className={styles.logo} src="/next.svg" alt="Next.js logo" width={100} height={20} priority />
-        <div className={styles.intro}>intro</div>
-        <div className={styles.ctas}>Documentation</div>
-      </main>
+    <div className={styles.users}>
+      <Search setSearchText={setSearchText} loading={loading} />
+      {loading ? (
+        <div style={{ textAlign: "center", padding: 24 }}>
+          <Spin size="large" />
+        </div>
+      ) : (
+        <ListUsers usersData={data} />
+      )}
     </div>
   );
 }

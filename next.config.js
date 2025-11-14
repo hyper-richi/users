@@ -32,7 +32,9 @@ const nextConfig = {
     localeDetection: false,
   },
   reactStrictMode: false,
- // transpilePackages: ["geist"], // Add this line
+  images: {
+    domains: ["avatars.githubusercontent.com"],
+  },
 };
 
 module.exports = nextConfig;

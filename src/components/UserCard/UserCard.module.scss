@@ -1,0 +1,15 @@
+.card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+}
+.login {
+  font-weight: 600;
+}
+.links {
+  font-size: 12px;
+}

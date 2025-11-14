@@ -1,0 +1,38 @@
+.container {
+  max-width: 800px;
+  padding: 0 16px;
+  margin: 0 auto;
+  background-color: var(--foreground);
+}
+
+.user {
+  display: flex;
+  justify-content: center;
+  padding: 80px 0;
+  margin: 0 auto;
+  max-width: 1100px;
+
+  &__avatar {
+    width: 100%;
+
+    border: 1px solid black;
+  }
+
+  &__login {
+    color: green;
+  }
+
+  &__github {
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .user {
+    flex-direction: column;
+    padding: 0;
+  }
+}
