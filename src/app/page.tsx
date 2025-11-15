@@ -8,7 +8,6 @@ import { Spin } from "antd";
 
 export default function Home() {
   const { data, loading, error, setSearchText } = useGitHubUserSearch();
-  console.log("data: ", data);
 
   return (
     <div className={styles.users}>

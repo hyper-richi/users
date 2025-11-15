@@ -1,6 +1,5 @@
 "use client";
 import styles from "./Search.module.scss";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Input, Button, List, Spin, message, Space } from "antd"; // import { plural } from "@/app/lib/helpers/plural";
 import { useEffect, useState } from "react";
 

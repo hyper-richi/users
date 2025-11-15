@@ -2,9 +2,10 @@
 
 import styles from "./UserProfile.module.scss";
 import { useRouter } from "next/navigation";
-import { Avatar, Button } from "antd";
+import { Button, Tag } from "antd";
 import { UserItem } from "@/types/types";
 import Image from "next/image";
+import Link from "next/link";
 
 interface UserProfileProps {
   user: UserItem;
@@ -12,11 +13,9 @@ interface UserProfileProps {
 
 const imageStyle = {
   height: "100%",
-  border: "1px solid #fff",
 };
 
 export default function UserProfile({ user }: UserProfileProps) {
-  console.log("user: ", user.avatar_url);
   const router = useRouter();
 
   return (
@@ -28,8 +27,18 @@ export default function UserProfile({ user }: UserProfileProps) {
         <div className={styles.user__avatar}>
           <Image priority className={styles.logo} style={imageStyle} src={user.avatar_url} alt={user.login} width={100} height={100} />
         </div>
-        <h2 className={styles.user__login}>{user.login}</h2>
-        <a className={styles.user__github}>{user.html_url}</a>
+        <div className={styles.user__name}>
+          <div className={styles.user__box}>
+            <span className={styles.user__fontSize24}>Login:</span>
+            <span className={styles.user__fontSize24}>{user.login}</span>
+          </div>
+          <div className={styles.user__box}>
+            <span>Страница:</span>
+            <Link href={user.html_url} target="_blank" className={styles.user__link}>
+              GitHub
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

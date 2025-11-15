@@ -1,0 +1,13 @@
+
+.error {
+  &__container {
+    max-width: 1440px;
+    padding: 0 16px;
+    padding-top: 20px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  &__title {
+    margin: 10px 0;
+  }
+}

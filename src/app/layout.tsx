@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import AntdRegistry from "./AntdRegistry";
+export const fetchCache = "force-no-store";
+export const dynamic = "force-static";
+import "antd/dist/reset.css";
 import "./globals.scss";
 
 const Geist = localFont({
@@ -37,7 +41,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${Geist.variable} ${GeistMono.variable}`}>
       <body>
-        <main className="page">{children} </main>
+        <main className="page">
+          <AntdRegistry>{children}</AntdRegistry>{" "}
+        </main>
       </body>
     </html>
   );
