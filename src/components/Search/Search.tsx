@@ -1,8 +1,7 @@
 "use client";
-import styles from "./Search.module.scss";
-import { Input, Button, List, Spin, message, Space } from "antd"; // import { plural } from "@/app/lib/helpers/plural";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import styles from "./Search.module.scss";
 
 type TypeSearchProps = {
   setSearchText: (value: string) => void;
@@ -26,9 +25,6 @@ function Search({ setSearchText, loading }: TypeSearchProps) {
     return () => clearTimeout(handler);
   }, [value]);
 
-  function onChange(value: string): void {
-    setValue(value);
-  }
 
   return (
     <div className={styles.search}>
