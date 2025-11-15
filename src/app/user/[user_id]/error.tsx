@@ -1,4 +1,4 @@
-"use client"; // Error components must be Client Components
+"use client"; 
 import styles from "./page.module.scss";
 
 export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {

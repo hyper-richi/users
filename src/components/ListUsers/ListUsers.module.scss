@@ -1,11 +1,7 @@
 .ListUsers {
-  border: 1px solid black;
 }
 
 .container {
-  /* display: flex;
-  flex-flow: row wrap;
-  min-width: 0; */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 16px;

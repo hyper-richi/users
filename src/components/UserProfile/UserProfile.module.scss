@@ -3,43 +3,9 @@
   padding: 20px;
   margin: 0 auto;
   background-color: var(--foreground);
-}
 
-.user {
-  display: flex;
-  justify-content: center;
-  padding: 80px 0;
-  margin: 0 auto;
-  max-width: 1100px;
-  gap: 10px;
-
-  &__avatar {
-    width: 100%;
-  }
-
-  &__name {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  &__box {
-    display: flex;
-    gap: 5px;
-    justify-content: space-between;
-  }
-
-  &__fontSize24 {
-    font-size: 24px;
-  }
-
-  &__link {
-      &:hover {
-        text-decoration: none;
-        outline: 0;
-        color: #69b1ff;
-      }
-  }
+  border-radius: 2px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {
@@ -50,5 +16,102 @@
   .user {
     flex-direction: column;
     padding: 0;
+  }
+}
+
+.user {
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    & .user__avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-right: 1rem;
+    }
+
+    & .user__basic {
+      display: flex;
+      flex-direction: column;
+
+      & .user__name {
+        font-size: 1.5rem;
+        margin: 0;
+      }
+
+      & .user__login {
+        color: #0366d6;
+        text-decoration: none;
+      }
+
+      & .user__admin {
+        margin-top: 0.25rem;
+        color: #d73a49;
+        font-weight: bold;
+        font-size: 0.85rem;
+      }
+    }
+  }
+
+  &__avatar {
+    width: 100%;
+  }
+
+  &__details,
+  &__stats,
+  &__timestamps {
+    margin-bottom: 1rem;
+
+    & p {
+      margin: 0.25rem 0;
+    }
+
+    & a {
+      color: #0366d6;
+      text-decoration: none;
+    }
+  }
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 16px;
+  height: 32px;
+
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  margin-bottom: 16px;
+
+  &:hover:not(:disabled) {
+    color: #4096ff;
+    border-color: #4096ff;
+    background: #ffffff;
+  }
+
+  &:active:not(:disabled) {
+    color: #0958d9;
+    border-color: #0958d9;
+    background: #f0f5ff;
+  }
+
+  &:disabled {
+    color: #91caff;
+    border-color: #d9d9d9;
+    background-color: #f5f5f5;
+    cursor: not-allowed;
   }
 }

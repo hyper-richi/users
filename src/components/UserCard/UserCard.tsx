@@ -2,9 +2,9 @@
 
 import React from "react";
 import Link from "next/link";
-import { Card, Avatar } from "antd";
+import { Avatar } from "antd";
 import styles from "./UserCard.module.scss";
-import { UserItem } from "@/types/types";
+import { User } from "@/types/types";
 import { useRouter } from "next/navigation";
 
 const imageStyle = {
@@ -12,7 +12,7 @@ const imageStyle = {
   minWidth: "62px",
 };
 
-export default function UserCard({ user }: { user: UserItem }) {
+export default function UserCard({ user }: { user: User }) {
   const router = useRouter();
 
   const openUserPage = (e: { preventDefault: () => void; stopPropagation: () => void }) => {

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import AntdRegistry from "./AntdRegistry";
-export const fetchCache = "force-no-store";
-export const dynamic = "force-static";
+import StyledJsxRegistry from "./registry";
+import { StyleProvider, createCache } from "@ant-design/cssinjs";
 import "antd/dist/reset.css";
 import "./globals.scss";
 
@@ -28,6 +28,12 @@ const GeistMono = localFont({
   variable: "--font-geist-mono",
 });
 
+// const cache = createCache(); // создаём кэш
+
+// export const revalidate = 0;
+// export const fetchCache = "force-no-store";
+// export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "GitHub Users",
   description: "Developed by ELdar",
@@ -41,9 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${Geist.variable} ${GeistMono.variable}`}>
       <body>
-        <main className="page">
-          <AntdRegistry>{children}</AntdRegistry>{" "}
-        </main>
+        <main className="page">{children}</main>
       </body>
     </html>
   );

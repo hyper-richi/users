@@ -1,33 +1,34 @@
-import { useEffect, useRef, useState } from "react";
-import type { GitHubUserSearchResponse, User } from "../types/types";
+import { useState, useEffect } from "react";
+import type { User } from "@/types/types";
 
 interface GitHubError {
   message: string;
   status: number | null;
 }
 
-export function useGitHubUserSearch(initialQuery: string = "") {
-  const [data, setData] = useState<User[] | []>([]);
-  const [loading, setLoading] = useState(false);
+export function useGitHubUser(userId: string) {
+  const [user, setUser] = useState<User | null>(null);
   const [error, setError] = useState<GitHubError | null>(null);
-  const [searchText, setSearchText] = useState(initialQuery);
 
   useEffect(() => {
-    const query = searchText.trim();
-    if (query === "") {
+    if (!userId) {
+      setUser(null);
       setError(null);
-      setData([]);
       return;
+    } else {
+      fetchUser(userId);
     }
-    fetchUsers(searchText);
-  }, [searchText]);
+  }, [userId]);
 
-  const fetchUsers = async (query: string) => {
-    setLoading(true);
+  const fetchUser = async (userId: string) => {
     setError(null);
 
     try {
-      const res = await fetch(`https://api.github.com/search/users?q=${query}`);
+      const res = await fetch(`https://api.github.com/user/${userId}`, {
+        headers: {
+          Accept: "application/vnd.github+json",
+        },
+      });
 
       if (!res.ok) {
         if (res.status === 403) {
@@ -35,13 +36,12 @@ export function useGitHubUserSearch(initialQuery: string = "") {
             message: "Превышено кол-во запросов к Api",
             status: res.status,
           });
-          setData([]);
         } else {
           throw new Error(`Ошибка запроса: ${res.status} ${res.statusText}`);
         }
       } else {
-        const json: GitHubUserSearchResponse = await res.json();
-        setData(json.items);
+        const json = await res.json();
+        setUser(json);
       }
     } catch (e: unknown) {
       if (e instanceof Error) {
@@ -55,10 +55,8 @@ export function useGitHubUserSearch(initialQuery: string = "") {
           status: null,
         });
       }
-    } finally {
-      setLoading(false);
     }
   };
 
-  return { data, loading, error, setSearchText, searchText };
+  return { user, error };
 }
